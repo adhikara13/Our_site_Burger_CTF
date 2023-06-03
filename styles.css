@@ -52,3 +52,24 @@ main {
     margin: 20px auto;
     background-color: #011627;
 }
+
+#timer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+
+#gameover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: white;
+    display: none;
+    text-align: center;
+    /* Добавить эту строку */
+}
