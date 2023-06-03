@@ -3,62 +3,7 @@
 
 <head>
   <title>CTF Burger</title>
-  <style>
-    body {
-      background-color: #1f1f1f;
-      /* Темный цвет фона */
-      color: #ffffff;
-      /* Цвет текста */
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #333333;
-      /* Цвет заголовка */
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #222222;
-      /* Цвет меню */
-      width: 250px;
-      padding: 20px;
-      float: left;
-    }
-
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      margin-bottom: 10px;
-    }
-
-    nav ul li a {
-      display: block;
-      color: #ffffff;
-      /* Цвет ссылок */
-      text-decoration: none;
-      padding: 5px;
-    }
-
-    nav ul li a:hover {
-      background-color: #555555;
-      /* Цвет при наведении */
-    }
-
-    main {
-      padding: 20px;
-      margin-left: 290px;
-      /* Чтобы контент не перекрывал меню */
-      text-align: left;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
@@ -105,12 +50,10 @@
   <script type="module">
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118.3/build/three.module.js';
     import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118.3/examples/jsm/controls/OrbitControls.js';
-
-
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('globe').appendChild(renderer.domElement);
 
@@ -135,7 +78,6 @@
 
     animate();
   </script>
-
 </body>
 
 </html>
