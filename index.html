@@ -4,36 +4,46 @@
 <head>
   <title>CTF Burger</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+
 </head>
 
 <body>
   <header>
     <h1>CTF Burger</h1>
   </header>
-
+  <button id="startGame" class="start-button"> ▶ Метеор ◀</button>
   <nav>
     <ul>
-      <li><a href="pages/why_we_must_solve_ctfs.html">Зачем решать ctf?</a></li>
-      <li><a href="pages/ctf_teams.html">Ctf команды(можно подписаться на каждую и следить за материалами,
-          мероприятиями,
-          райтапами)</a></li>
-      <li><a href="pages/cool_ctfers_and_not_only.html">Крутые ctfеры и не только</a></li>
-      <li><a href="pages/write-ups.html">Врайтапы, записи занятий</a></li>
-      <li><a href="pages/tasks(articles, video).html">Таски(+ статьи, видео)</a></li>
-      <li><a href="pages/Events.html">Мероприятия, новые соревнования ctf</a></li>
-      <li><a href="pages/cool_channels.html">Крутые каналы</a></li>
-      <li><a href="pages/tasks(articles, video).html">Таски(+ статьи, видео)</a></li>
-      <li><a href="pages/cool_ctfs_other_tournaments.html">Крутые ctf и не только соревнования</a></li>
-      <li><a href="pages/professions_in_cybersec.html">Профессии, направления в ИБ, в чем состоит работа</a></li>
-      <li><a href="pages/company_in_cybersec.html">Компании в ИБ</a></li>
-      <li><a href="pages/compliaence.html">Бумажная безопасность</a></li>
-      <li><a href="pages/Burger_komanda_history.html">Burger Команда (history)</a></li>
-      <li><a href="pages/useful_materials_for_internship.html">Полезные материалы для стажировки и прочее</a></li>
-      <li><a href="pages/how_to_ctf.html">Как расти в навыках, в ctf</a></li>
-      <li><a href="pages/our_plans.html">Планы</a></li>
-      <li><a href="pages/how_to_start_in_reverse.html">Как стартануть в реверсе и не только в нем</a></li>
+      <li class="nav-item">
+        <a href="#">▶ Менью</a>
+        <ul class="nav-subitem">
+          <li><a href="pages/why_we_must_solve_ctfs.html">Зачем решать цтф?</a></li>
+          <li><a href="pages/ctf_teams.html">Ctf команды(можно подписаться на каждую и следить за материалами,
+              мероприятиями,
+              райтапами)</a></li>
+          <li><a href="pages/cool_ctfers_and_not_only.html">Крутые ctfеры и не только</a></li>
+          <li><a href="pages/write-ups.html">Врайтапы, записи занятий</a></li>
+          <li><a href="pages/tasks(articles, video).html">Таски(+ статьи, видео)</a></li>
+          <li><a href="pages/Events.html">Мероприятия, новые соревнования ctf</a></li>
+          <li><a href="pages/cool_channels.html">Крутые каналы</a></li>
+          <li><a href="pages/tasks(articles, video).html">Таски(+ статьи, видео)</a></li>
+          <li><a href="pages/cool_ctfs_other_tournaments.html">Крутые ctf и не только соревнования</a></li>
+          <li><a href="pages/professions_in_cybersec.html">Профессии, направления в ИБ, в чем состоит работа</a>
+          </li>
+          <li><a href="pages/company_in_cybersec.html">Компании в ИБ</a></li>
+          <li><a href="pages/compliaence.html">Бумажная безопасность</a></li>
+          <li><a href="pages/Burger_komanda_history.html">Burger Команда (history)</a></li>
+          <li><a href="pages/useful_materials_for_internship.html">Полезные материалы для стажировки и прочее</a>
+          </li>
+          <li><a href="pages/how_to_ctf.html">Как расти в навыках, в ctf</a></li>
+          <li><a href="pages/our_plans.html">Планы</a></li>
+          <li><a href="pages/how_to_start_in_reverse.html">Как стартануть в реверсе и не только в нем</a></li>
+        </ul>
+      </li>
+      <!-- Категории -->
     </ul>
   </nav>
+
 
   <main>
     <h2>Привет, мир!!</h2>
@@ -49,119 +59,30 @@
     <p>Ну ебаный сыр, почему все идет елочкой и по центру, Ахмад пофикси пж, хотя сам зафиксил.</p>
   </main>
 
-  <div id="globe"></div>
-  <div id="timer">0</div>
-  <div id="gameover">Игра окончена</div>
 
-  <script src="https://threejs.org/build/three.js"></script>
+  <div id="game" style="display: none;">
+    <div id="globe"></div>
+    <div id="timer">0</div>
+    <div id="gameover">Игра окончена</div>
+
+    <script src="https://threejs.org/build/three.js"></script>
+
+  </div>
   <script>
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var navItems = document.querySelectorAll('.nav-item');
 
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    navItems.forEach(function (navItem) {
+      navItem.addEventListener('click', function () {
+        this.classList.toggle('active');
+      });
+    });
 
-    var ambientLight = new THREE.AmbientLight(0xffffff);
-    scene.add(ambientLight);
-
-    // Загрузить текстуру ракеты
-    var rocketTexture = new THREE.TextureLoader().load('assets/images/burger.png');
-    var rocketMaterial = new THREE.MeshBasicMaterial({ map: rocketTexture });
-
-    var rocketGeometry = new THREE.CylinderGeometry(0, 0.5, 1, 12);
-    var player = new THREE.Mesh(rocketGeometry, rocketMaterial);
-    scene.add(player);
-
-    var score = 0;
-    var gameOver = false;
-
-    // Загрузить текстуру метеорита
-    var meteorTexture = new THREE.TextureLoader().load('assets/images/asteroid.jpg');
-    var meteorMaterial = new THREE.MeshPhongMaterial({ map: meteorTexture, specular: 0x050505, shininess: 100 });
-    var meteors = [];
-
-    var timerElem = document.getElementById('timer');
-    var gameoverElem = document.getElementById('gameover');
-    var startTime = Date.now();
-
-    function spawnMeteor() {
-      var size = Math.random() * 0.5 + 0.5;
-      var speed = Math.random() * 0.1 + 0.05;
-      var meteorGeometry = new THREE.TetrahedronGeometry(size, 2);
-      var meteor = new THREE.Mesh(meteorGeometry, meteorMaterial);
-      meteor.position.x = (Math.random() - 0.5) * 20;
-      meteor.position.y = (Math.random() - 0.5) * 20;
-      meteor.position.z = 20;
-      meteor.speed = speed;
-      scene.add(meteor);
-      meteors.push(meteor);
-    }
-
-    function moveMeteors() {
-      for (var i = 0; i < meteors.length; i++) {
-        meteors[i].position.z -= meteors[i].speed;
-        if (meteors[i].position.z < -10) {
-          scene.remove(meteors[i]);
-          meteors.splice(i, 1);
-          i--;
-        } else if (meteors[i].position.distanceTo(player.position) < 1) {
-          // Игра заканчивается, если метеорит попадает в игрока
-          gameOver = true;
-          gameoverElem.style.display = 'block';
-          gameoverElem.innerHTML = 'Игра окончена<br>Ваше время: ' + timerElem.textContent + ' секунд';
-        }
-      }
-    }
-
-    // Управление движением игрока с помощью мыши
-    var mouse = new THREE.Vector2();
-
-    function onMouseMove(event) {
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      var vector = new THREE.Vector3(mouse.x, mouse.y, 0.5);
-      vector.unproject(camera);
-
-      var dir = vector.sub(camera.position).normalize();
-      var distance = -camera.position.z / dir.z;
-      var pos = camera.position.clone().add(dir.multiplyScalar(distance));
-
-      player.position.copy(pos);
-    }
-
-    window.addEventListener('mousemove', onMouseMove, false);
-
-    camera.position.z = 5;
-
-    var animate = function () {
-      requestAnimationFrame(animate);
-
-      if (gameOver) {
-        return;
-      }
-
-      moveMeteors();
-
-      // Генерировать метеориты чаще, по мере увеличения счета
-      if (Math.random() < 0.01 + score * 0.01) {
-        spawnMeteor();
-      }
-
-      // Увеличивать счет со временем
-      score += 0.01;
-
-      // Обновление таймера
-      var time = Math.floor((Date.now() - startTime) / 1000);
-      timerElem.textContent = time;
-
-      renderer.render(scene, camera);
-    };
-
-
-    animate();
+    document.getElementById('startGame').addEventListener('click', function () {
+      document.getElementById('game').style.display = 'block';
+      window.animate();
+    });
   </script>
+  <script src="meteor.js"></script>
 </body>
 
 </html>
