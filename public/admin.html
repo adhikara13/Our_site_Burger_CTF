@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #011627;
+            color: #7cfc00;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        .admin-panel {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #filename {
+            background-color: #0b3c5d;
+            color: #7cfc00;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #markdown {
+            background-color: #0b3c5d;
+            color: #7cfc00;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        #token {
+            background-color: #0b3c5d;
+            color: #7cfc00;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #submit {
+            background-color: #0b3c5d;
+            color: #7cfc00;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-panel">
+        <h1>Admin Panel</h1>
+        <form id="admin-form">
+            <input type="password" id="token" placeholder="Enter admin token">
+            <br>
+            <input type="text" id="filename" placeholder="Enter filename">
+            <br>
+            <textarea id="markdown" rows="10" cols="50"></textarea>
+            <br>
+            <button type="submit" id="submit">Submit</button>
+        </form>
+        <div id="result"></div> <!-- New div to display the result -->
+        <div id="error"></div> <!-- New div to display the error message -->
+        <script src="admin.js"></script>
+    </div>
+</body>
+
+</html>
