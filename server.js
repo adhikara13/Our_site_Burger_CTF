@@ -7,7 +7,7 @@ const fs = require('fs');
 const md = new markdownIt();
 const app = express();
 const PORT = 3000;
-// const adminToken = ''; // Set your desired admin token here
+const adminToken = process.env.ADMIN_TOKEN; // Use the value from the ADMIN_TOKEN environment variable
 
 app.use(express.json());
 
